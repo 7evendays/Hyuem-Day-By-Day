@@ -10,8 +10,13 @@ import UIKit
 
 class DetailViewController: UIViewController
 {
-    @IBOutlet weak var memoTableView: UITableView!
     var memo: Memo?
+    var paramTK: String = ""
+    
+    
+    @IBOutlet weak var memoTableView: UITableView!
+    
+    @IBOutlet weak var KeywordLabel: UILabel!
     
     let formatter: DateFormatter =
     {
@@ -94,12 +99,15 @@ class DetailViewController: UIViewController
     }
     //observer를 해제하는 코드부터 구현
     
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
         token = NotificationCenter.default.addObserver(forName: ComposeViewController.memoDidChange, object: nil, queue: OperationQueue.main, using:
             { [weak self] (noti) in self?.memoTableView.reloadData() })
+        
+        self.KeywordLabel.text = paramTK
     }
     
 

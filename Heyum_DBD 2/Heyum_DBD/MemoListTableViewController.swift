@@ -10,6 +10,13 @@ import UIKit
 
 class MemoListTableViewController: UITableViewController
 {
+    @IBOutlet weak var KeywordLabel: UILabel!
+    
+    @IBAction func MemoListToDetail(_ sender: Any?)
+    {
+        self.performSegue(withIdentifier: "MemoListToDetail", sender: self)
+    }
+    
     let formatter: DateFormatter =
     {
         let f = DateFormatter()
@@ -50,6 +57,14 @@ class MemoListTableViewController: UITableViewController
                 vc.memo = DataManager.shared.memoList[indexPath.row]
             }
         }
+        
+        
+        let dest = segue.destination
+        
+        guard let dvc = dest as? DetailViewController else {
+            return
+        }
+        dvc.paramTK = self.KeywordLabel.text!
     }
     //툴바에 있는 버튼을 탭할 때 segue가 실행
     //sender로 툴바에 있는 버튼이 전달
@@ -57,19 +72,19 @@ class MemoListTableViewController: UITableViewController
     //다만 navigationController를 통해 전달하기 때문에 최종 viewController에 접근하는 코드가 조금 달라짐
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(forName: ComposeViewController.newMemoDidInsert, object: nil, queue: OperationQueue.main) {
             [weak self] (noti) in self?.tableView.reloadData()
         }
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        let array = ["날씨", "저녁", "여행", "매미", "빙수", "소나기", "태양", "거울", "숲", "이불", "노을", "감기약", "터널", "공백" , "아침햇살", "물방울", "각설탕", "건널목", "징검다리", "신호등", "별똥별", "탄산", "웃는얼굴", "거미", "홍차", "베개", "자갈돌", "구름", "고래", "불면증", "수영장", "필름", "침묵", "비밀"]
+        let TK = array.randomElement()
+        self.KeywordLabel.text = TK
     }
+    
 
     // MARK: - Table view data source
 

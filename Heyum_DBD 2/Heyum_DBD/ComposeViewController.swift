@@ -12,7 +12,8 @@ class ComposeViewController: UIViewController
 {
     var editTarget: Memo?
     var originalMemoContent: String?
-
+    
+    
     @IBAction func close(_ sender: Any)
     {
         dismiss(animated: true, completion: nil)
@@ -42,7 +43,6 @@ class ComposeViewController: UIViewController
             DataManager.shared.addNewMemo(memo)
             NotificationCenter.default.post(name: ComposeViewController.newMemoDidInsert, object: nil)
         }
-        
         
         dismiss(animated: true, completion: nil)
     }
@@ -116,7 +116,6 @@ class ComposeViewController: UIViewController
                     strongSelf.memoTextView.scrollIndicatorInsets = inset
                 }
             })
-        //키보드가 표시되기 전에 전달되는 notification
         
         
         //키보드가 사라질 때 여백 제거
@@ -166,12 +165,12 @@ class ComposeViewController: UIViewController
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
     */
-
 }
 
 
