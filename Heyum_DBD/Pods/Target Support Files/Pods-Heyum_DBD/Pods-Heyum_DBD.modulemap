@@ -1,6 +1,0 @@
-framework module Pods_Heyum_DBD {
-  umbrella header "Pods-Heyum_DBD-umbrella.h"
-
-  export *
-  module * { export * }
-}
